@@ -3,6 +3,11 @@ const express = require('express');
 const app = express();
 const path = require("path");
 const mongoose = require('mongoose');
+const bodyParser = require("body-parser");
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 main()
 .then(resp=>{
@@ -24,3 +29,16 @@ app.listen( process.env.API_PORT,(req,res) => {
 app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/index.html"));;
 });
+
+
+//Operações CRUD
+
+const phoneController = require('./controllers/phoneController');
+
+
+app.post('/save/phones', phoneController.addPhone);
+
+app.get('/phones', phoneController.getPhones);
+
+
+module.exports = mongoose;
