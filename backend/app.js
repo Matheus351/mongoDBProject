@@ -32,13 +32,14 @@ app.get("/", (req, res) => {
 
 
 //Operações CRUD
-
 const phoneController = require('./controllers/phoneController');
-
 
 app.post('/save/phones', phoneController.addPhone);
 
 app.get('/phones', phoneController.getPhones);
 
+app.put('/phones/:id', phoneController.updatePhone);
+
+app.delete('/phones/:id', phoneController.deletePhone);
 
 module.exports = mongoose;
