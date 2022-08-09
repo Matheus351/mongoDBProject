@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet"  href="/src/style.css">
+    <title>GetPhones</title>
+</head>
+<body>
+    
+  
+   <header class="cabecalho">
+
+       <div class="logo">
+           <a href="#">
+               <h1>GetPhones</h1>
+           </a>
+       </div>
+
+     
+
+       <nav class="menu">
+           <ul>
+               <li>
+                   <a href="/">Home</a>
+               </li>
+           </ul>
+       </nav>
+
+   </header>
+
+
+   <div class="form" id="form">
+    <form class="formulario" method="post" action="">
+        <p> </option>Preencha os campos</p>
+
+        <div class="field">
+            <label for="nome">Nome do aparelho:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite o nome*" required>
+        </div> 
+
+        <div class="field">
+            <label for="telefone">Preço</label>
+            <input type="number" id="preco" name="preco" placeholder="Informe o preço">
+        </div>
+
+        <div class="field">
+            <label for="processador">Processador</label>
+            <input type="text" id="processador" name="processador" placeholder="Especifique o processador*" required>
+        </div>
+
+        <div class="field">
+            <label for="ram">Memória RAM</label>
+            <input type="text" id="ram" name="ram" placeholder="Especifique a memória RAM*" required>
+        </div>
+
+        <input type="submit" value="Salvar">
+    </form> 
+</div> 
+</body>
+</html>

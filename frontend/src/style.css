@@ -2,4 +2,40 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+
+.cabecalho{
+    background-color: #000000;
+    height: 80px;
+    border-bottom:5px solid #00bfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+  
+a{
+    text-decoration: none;
+    color: #eee;
+    font-size: 1.1em;
+    padding: 10px 15px;
+}
+ 
+.menu a:hover {
+    background-color: #4faddb;
+    color: #000;
+}
+ 
+.menu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+  
+.menu{
+    flex-grow: 10;
 }

@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../frontend/index.html"));;
 });
 
+app.get("/addphone", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/form.html"));;
+});
 
 //Operações CRUD
 const phoneController = require('./controllers/phoneController');
