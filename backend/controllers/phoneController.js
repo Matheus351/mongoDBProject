@@ -1,4 +1,16 @@
+
 const Phone = require('../models/Smarthphone');
+const mongoose = require('mongoose')
+
+const getPhone = async (request, response) =>{
+    const phone = await Phone.find({_id: request.params.id},{__v:false});
+    if(phone.length > 0){
+        response.status(200).send(phone);
+    }else{
+        response.status(400).send('Celular não encontrado');
+    }
+};
+
 
 const addPhone = async (req, resp) =>{
 
@@ -21,26 +33,28 @@ const getPhones = async (req, resp) =>{
 }
 
 const updatePhone = async (req, resp) =>{
-
+    
+  let id = mongoose.Types.ObjectId(req.params.id);
     const result = await Phone.updateOne(
-        {_id:req.params.id},
-        {$set:{nome:req.body.nome, 
-            preco:req.body.preco,
-            ram:req.body.ram,
-            processador:req.body.processador}}
-        );
+        {_id:id},
+        {$set:{nome:req.body.nome,
+        preco:req.body.preco,
+        ram:req.body.ram,
+        processador:req.body.processador}}
+        )
 
     if(result.modifiedCount>0){
-        resp.status(200).send('Atualizado');
+       resp.send(result)
     }else{
         resp.status(400).send('Não foi possível atualizar');
     }
-
+    resp.redirect('/')
 }
 
 const deletePhone = async (req, resp)=>{
 
-    const result = await Phone.deleteOne({_id: req.params.id});
+    let id = mongoose.Types.ObjectId(req.params.id);
+    const result = await Phone.deleteOne({_id:id});
 
     if(result.deletedCount > 0){
         resp.status(200).send('Removido com sucesso!');
@@ -50,4 +64,4 @@ const deletePhone = async (req, resp)=>{
 };
 
 
-module.exports = {addPhone, getPhones, updatePhone, deletePhone};
+module.exports = {addPhone, getPhones, updatePhone, deletePhone, getPhone};
