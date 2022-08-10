@@ -42,8 +42,9 @@ a{
 
 
 td:not(.options){
+    border-radius: 3px;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid #000000;
 }
 
 button{

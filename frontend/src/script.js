@@ -24,7 +24,7 @@ function loadContent(arquivoJson){
   buttonDelete.innerText='Deletar'
 
 
-  buttonEdit.setAttribute('onclick', `handleEdit('${idSmartphone}','${smartphone.nome}');`);
+  buttonEdit.setAttribute('onclick', `handleEdit('${idSmartphone}','${smartphone.nome}','${smartphone.preco}','${smartphone.ram}','${smartphone.processador}');`);
   buttonDelete.setAttribute('onclick', `handleDelete('${idSmartphone}');`);
 
   td1.innerHTML = smartphone.nome
@@ -44,10 +44,10 @@ function loadContent(arquivoJson){
 }
 }
       
-function handleEdit(idPhone, nome){
+function handleEdit(idPhone, nome, preco, ram, processador){
 
  const formEdit = `
-  <form class="formularioEdit" method="put" action="http://localhost:3000/phones/${idPhone}">
+  <form class="formularioEdit" style="width: 400px;" method="post" action="/phones/${idPhone}">
 
   <div class="field">
       <label for="nome">Nome do aparelho:</label>
@@ -56,26 +56,27 @@ function handleEdit(idPhone, nome){
 
   <div class="field">
       <label for="telefone">Preço</label>
-      <input type="number" id="preco" name="preco" placeholder="Informe o preço">
+      <input  value="${preco}" type="number" id="preco" name="preco" placeholder="Informe o preço">
   </div>
 
   <div class="field">
       <label for="ram">Memória RAM</label>
-      <input type="text" id="ram" name="ram" placeholder="Especifique a memória RAM*" required>
+      <input value="${ram}" type="text" id="ram" name="ram" placeholder="Especifique a memória RAM*" required>
   </div>
 
   <div class="field">
       <label for="processador">Processador</label>
-      <input type="text" id="processador" name="processador" placeholder="Especifique o processador*" required>
+      <input value="${processador}" type="text" id="processador" name="processador" placeholder="Especifique o processador*" required>
   </div>
 
   <input type="submit" value="Salvar">
 </form>   
 `
-const tdOptions = document.querySelector('.options')
+const tdOptions = document.querySelector('.editForm')
 tdOptions.innerHTML=formEdit
 
 }
+
 
 
 function handleDelete(idPhone){

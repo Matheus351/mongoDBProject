@@ -43,7 +43,7 @@ app.get('/phones', phoneController.getPhones);
 
 app.get('/phones/:id', phoneController.getPhone);
 
-app.put('/phones/:id', phoneController.updatePhone);
+app.post('/phones/:id', phoneController.updatePhone);
 
 app.delete('/phones/:id', phoneController.deletePhone);
 

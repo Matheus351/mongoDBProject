@@ -2,12 +2,13 @@
 const Phone = require('../models/Smarthphone');
 const mongoose = require('mongoose')
 
-const getPhone = async (request, response) =>{
-    const phone = await Phone.find({_id: request.params.id},{__v:false});
+const getPhone = async (req, resp) =>{
+    let id = mongoose.Types.ObjectId(req.params.id);
+    const phone = await Phone.find({_id:id},{__v:false});
     if(phone.length > 0){
-        response.status(200).send(phone);
+        resp.status(200).send(phone);
     }else{
-        response.status(400).send('Celular não encontrado');
+        resp.status(400).send('Celular não encontrado');
     }
 };
 
@@ -35,20 +36,15 @@ const getPhones = async (req, resp) =>{
 const updatePhone = async (req, resp) =>{
     
   let id = mongoose.Types.ObjectId(req.params.id);
-    const result = await Phone.updateOne(
-        {_id:id},
-        {$set:{nome:req.body.nome,
-        preco:req.body.preco,
-        ram:req.body.ram,
-        processador:req.body.processador}}
-        )
-
-    if(result.modifiedCount>0){
-       resp.send(result)
-    }else{
-        resp.status(400).send('Não foi possível atualizar');
-    }
-    resp.redirect('/')
+    Phone.findOneAndUpdate(
+    {_id:id},{$set:{nome:req.body.nome,preco:req.body.preco,ram:req.body.ram,processador:req.body.processador}}
+        ).exec(function(err,res){
+            if(err) {
+                resp.status(500).send(err);
+            } else {
+               resp.redirect('/')
+            }
+        })
 }
 
 const deletePhone = async (req, resp)=>{
